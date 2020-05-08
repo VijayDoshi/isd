@@ -1,0 +1,10 @@
+
+Commands
+#Gets all weather files for 2020
+wget -c -N ftp://ftp.ncdc.noaa.gov/pub/data/noaa/2020/*.gz
+
+#extracts to a folder called extracted
+for f in *.gz ; do gunzip -c "$f" > extracted/"${f%.*}" ; done
+
+#to start logstash with the config
+bin/logstash -f config/isd.conf
